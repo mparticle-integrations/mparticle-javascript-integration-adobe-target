@@ -10,7 +10,7 @@ EventHandler.prototype.logEvent = function(event) {
     var timeout = event.CustomFlags['ADOBETARGET.TIMEOUT'];
 
     if (!MBOXNAME) {
-        console.log(
+        console.warn(
             'ADOBE.MBOX not passed as custom flag; not forwarding to Adobe Target'
         );
         return false;

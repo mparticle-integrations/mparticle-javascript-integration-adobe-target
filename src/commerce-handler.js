@@ -7,29 +7,38 @@ CommerceHandler.prototype.logCommerceEvent = function(event) {
     var price = event.ProductAction.TotalAmount || 0;
     var productSkus = [];
 
-    event.ProductAction.ProductList.forEach(function(product) {
-        if (product.Sku) {
-            productSkus.push(product.Sku);
-        }
-    });
-
-    if (event.EventCategory === mParticle.CommerceEventType.ProductPurchase) {
-        if (!MBOXNAME) {
-            console.log(
-                'ADOBE.MBOX not passed as custom flag; not forwarding to Adobe Target'
-            );
-            return false;
-        }
-
-        window.adobe.target.trackEvent({
-            mbox: MBOXNAME,
-            params: {
-                orderId: event.ProductAction.TransactionId,
-                orderTotal: price,
-                productPurchaseId: productSkus.join(', '),
-            },
-        });
+    if (!MBOXNAME) {
+        console.warn(
+            'ADOBE.MBOX not passed as custom flag; not forwarding to Adobe Target'
+        );
+        return;
     }
+
+    if (event.ProductAction && event.ProductAction.ProductList.length) {
+        event.ProductAction.ProductList.forEach(function(product) {
+            if (product.Sku) {
+                productSkus.push(product.Sku);
+            }
+        });
+
+        switch (event.EventCategory) {
+            case mParticle.CommerceEventType.ProductPurchase:
+                window.adobe.target.trackEvent({
+                    mbox: MBOXNAME,
+                    params: {
+                        orderId: event.ProductAction.TransactionId,
+                        orderTotal: price,
+                        productPurchaseId: productSkus.join(', '),
+                    },
+                });
+                break;
+            default:
+                console.warn(
+                    'Only product purchases are mapped to Adobe Target. Event not forwarded.'
+                );
+        }
+    }
+
     /*
         Sample ecommerce event schema:
         {
