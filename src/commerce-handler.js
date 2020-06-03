@@ -28,7 +28,7 @@ CommerceHandler.prototype.logCommerceEvent = function(event) {
                     params: {
                         orderId: event.ProductAction.TransactionId,
                         orderTotal: price,
-                        productPurchaseId: productSkus.join(', '),
+                        productPurchasedId: productSkus.join(', '),
                     },
                 });
                 break;
