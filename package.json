@@ -1,6 +1,6 @@
 {
   "name": "@mparticle/web-adobe-target-kit",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "test": "npm run testKarma",
     "testKarma": "node test/boilerplate/test-karma.js",
