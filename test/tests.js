@@ -278,7 +278,7 @@ describe('Adobe Target Forwarder', function() {
                 CouponCode: null,
             },
         });
-        //
+
         window.adobe.target.trackEventOptions.should.have.property(
             'mbox',
             'mboxTest'
@@ -292,21 +292,9 @@ describe('Adobe Target Forwarder', function() {
             450
         );
         window.adobe.target.trackEventOptions.params.should.have.property(
-            'productPurchaseId',
+            'productPurchasedId',
             'SKU1, SKU2'
         );
-
-        // window.AdobeTargetForwarder.trackCustomName.should.equal('Purchase');
-        //
-        // window.AdobeTargetForwarder.eventProperties[0].Sku.should.equal('12345');
-        // window.AdobeTargetForwarder.eventProperties[0].Name.should.equal('iPhone 6');
-        // window.AdobeTargetForwarder.eventProperties[0].Category.should.equal('Phones');
-        // window.AdobeTargetForwarder.eventProperties[0].Brand.should.equal('iPhone');
-        // window.AdobeTargetForwarder.eventProperties[0].Variant.should.equal('6');
-        // window.AdobeTargetForwarder.eventProperties[0].Price.should.equal(400);
-        // window.AdobeTargetForwarder.eventProperties[0].TotalAmount.should.equal(400);
-        // window.AdobeTargetForwarder.eventProperties[0].CouponCode.should.equal('coupon-code');
-        // window.AdobeTargetForwarder.eventProperties[0].Quantity.should.equal(1);
 
         done();
     });
