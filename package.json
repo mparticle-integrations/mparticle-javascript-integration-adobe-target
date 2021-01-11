@@ -14,7 +14,7 @@
     "dist/AdobeTarget-Kit.common.jss"
   ],
   "devDependencies": {
-    "@mparticle/web-kit-wrapper": "^1.0.3",
+    "@mparticle/web-kit-wrapper": "^1.0.5",
     "mocha": "^5.2.0",
     "chai": "^4.2.0",
     "karma": "^3.1.1",
